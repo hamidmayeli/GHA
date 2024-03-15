@@ -14,8 +14,8 @@ jobs:
     if: github.event.issue.pull_request != '' && github.event.comment.body != ''
     secrets: inherit
     with:
-      environment: qa
-
+      environment: ${{github.event.comment.body}}
+      
   call-shared-from-other:
     uses: ./.github/workflows/shared.yml
     if: github.event.comment.body == ''

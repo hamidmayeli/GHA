@@ -1,0 +1,14 @@
+name: Environment secrets
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  call-shared:
+    uses: ./.github/workflows/shared.yml
+    secrets: inherit
+    with:
+      environment: qa

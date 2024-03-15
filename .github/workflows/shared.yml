@@ -3,7 +3,7 @@ name: Shared
 on:
   workflow_call:
     inputs:
-      environment:
+      the-env:
         description: The environment to run the end-to-end tests against
         required: true
         type: string
@@ -12,6 +12,6 @@ jobs:
   echo:
     name: Echo secret
     runs-on: ubuntu-latest
-    environment: ${{inputs.environment}}
+    environment: ${{inputs.the-env}}
     steps:
       - run: 'echo "Per env: ${{secrets.PER_ENV}}"'

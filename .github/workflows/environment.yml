@@ -5,10 +5,20 @@ on:
     branches: [main]
   push:
     branches: [main]
+  issue_comment:
+    types: [created]
 
 jobs:
-  call-shared:
+  call-shared-from-comment:
     uses: ./.github/workflows/shared.yml
+    if: github.event.issue.pull_request != '' && github.event.comment.body != ''
+    secrets: inherit
+    with:
+      environment: qa
+
+  call-shared-from-other:
+    uses: ./.github/workflows/shared.yml
+    if: github.event.comment.body == ''
     secrets: inherit
     with:
       environment: qa

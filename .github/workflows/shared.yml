@@ -10,6 +10,8 @@ on:
     
 jobs:
   echo:
+    permissions:
+      checks: write
     name: Echo secret
     runs-on: ubuntu-latest
     environment: ${{inputs.the-env}}

@@ -18,3 +18,18 @@ jobs:
     environment: ${{inputs.the-env}}
     steps:
       - run: 'echo "Per env: ${{secrets.PER_ENV}}"'
+      - name: Leave finished notification
+        uses: actions/github-script@v6
+        env:
+          ENV: ${{ inputs.the-env }}
+        with:
+          script: |
+            // Add a commit status to the current commit
+            await github.rest.repos.createCommitStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              'success',
+              target_url,
+              description: `Well down on running ${process.env.ENV}.`,
+              context: process.env.STATUS_CONTEXT,
+            });

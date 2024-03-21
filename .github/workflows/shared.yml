@@ -7,11 +7,12 @@ on:
         description: The environment to run the end-to-end tests against
         required: true
         type: string
-    
+
+permissions:
+  checks: write
+
 jobs:
   echo:
-    permissions:
-      checks: write
     name: Echo secret
     runs-on: ubuntu-latest
     environment: ${{inputs.the-env}}

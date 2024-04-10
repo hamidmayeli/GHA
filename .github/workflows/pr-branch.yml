@@ -1,4 +1,4 @@
-name: Deploy
+name: Get PR Branch
 
 on:
   issue_comment:
@@ -9,6 +9,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ github.event.issue }}
-      - run: echo ${{ github.event }}
-      - run: echo ${{ github }}
+      - run: echo ${{ toJSON(github.event.issue) }}
+      - run: echo ${{ toJSON(github.event) }}
+      - run: echo ${{ toJSON(github) }}

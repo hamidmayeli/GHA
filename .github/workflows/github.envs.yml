@@ -1,0 +1,17 @@
+on:
+  workflow_dispatch:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    name: Run
+    runs-on: ubuntu-latest
+    steps:
+    - name: the echo
+      run: |
+        echo "action_ref: ${{ github.action_ref }}"
+        echo "event: ${{ github.event }}"
+        echo "event_name: ${{ github.event_name }}"
+        echo "ref_name: ${{ github.ref_name }}"
+        echo "ref_type: ${{ github.ref_type }}"

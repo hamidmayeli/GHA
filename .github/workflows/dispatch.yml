@@ -1,0 +1,52 @@
+on:
+  workflow_dispatch:
+   inputs:
+      environment:
+        description: 'The environment to run the end-to-end tests against'
+        required: false
+        default: 'qa9'
+        type: choice
+        options:
+        - qa9
+        - qa11
+        - qa53
+        - staging-uk
+        - ieng-staging
+        - production
+        - i18n-production
+        - aus-production
+
+      tenant:
+        description: 'Tenant that the feature will run in'
+        required: true
+        default: 'uk'
+        type: choice
+        options:
+          - uk
+          - ie
+          - es
+          - it
+          - au
+
+      restaurantIds:
+        description: 'Comma separated list of restaurant IDs'
+        required: true
+        type: string
+        
+      setProductionRestaurant:
+        description: 'whether the restaurant should be switched to a Production Restaurant'
+        required: true
+        default: true
+        type: boolean
+
+jobs:
+  test:
+    name: Run
+    runs-on: ubuntu-latest
+    steps:
+    - name: the echo
+      run: |
+        echo "${{ inputs.environment }}"
+        echo "${{ inputs.tenant }}"
+        echo "${{ inputs.restaurantIds }}"
+        echo "${{ inputs.setProductionRestaurant }}"

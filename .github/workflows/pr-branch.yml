@@ -1,0 +1,12 @@
+name: Get PR Branch
+
+on:
+  issue_comment:
+    types: [created]
+  workflow_call:
+        
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "${{ toJSON(github) }}"
